@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Donating Made Crystal Clear</title>
+
+  <!-- TYPOGRAPHY
+       You can switch fonts here. Edit the families/weights in the URL or remove this line to use system fonts. -->
+  <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@700;900&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    /* =======================
+       THEME VARIABLES
+       - Change colors here to instantly update the whole page.
+       ======================= */
+    :root{
+      --brand-teal: #14b8c4;        /* page background tint under the hero image */
+      --brand-gold: #f8c105;        /* headline + primary button */
+      --ink: #0c1b1f;               /* dark text */
+      --paper: #ffffff;             /* white */
+      --paper-90: rgba(255,255,255,.9);
+    }
+
+    *{ box-sizing: border-box; }
+    html, body{
+      margin:0;
+      padding:0;
+      font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      color: var(--paper);
+      /* Set a background image for the whole page */
+      /* FIX: Use 'background' property correctly with url() */
+      background: url("./img/Zimbabwe_2022_CG-7848.jpg") no-repeat center center fixed;
+      background-size: cover; /* Make the image cover the whole page */
+    }
+
+    /* =======================
+       PAGE GRID
+       - Left column = brand rail (vertical)
+       - Right column = hero section
+       - To hide the rail on mobile, see @media rule below.
+       ======================= */
+    .page{
+      min-height: 100svh;
+      display: grid;
+      grid-template-columns: 84px 1fr;  /* rail width | content */
+      background: #e9eef2;
+    }
+
+    /* =======================
+       BRAND RAIL
+       - Rotate the brand text to match your Canva mock.
+       - To change the brand name or icon, edit .rail-inner below.
+       ======================= */
+    .rail{
+      background: var(--paper);
+      color: var(--ink);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-right: 1px solid #e6e9ee;
+    }
+    .rail-inner{
+      transform: rotate(-90deg);
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      white-space: nowrap;
+      font-weight: 600;
+      letter-spacing: .06em;
+    }
+    .logo-box{
+      /* Replace ✚ with your logo or swap this <span> for an <img> tag in the HTML */
+      width: 26px; height: 26px; border-radius: 6px;
+      background: var(--ink); color: var(--paper);
+      display: inline-flex; align-items:center; justify-content:center;
+      font-size: 14px; font-weight: 800; line-height: 1;
+    }
+    .brand-text{ font-size: 18px; }
+
+    /* =======================
+       HERO
+       - USES YOUR ATTACHED IMAGE
+       - Put the image in your repo at: /assets/landing-hero.png
+       - To use a different image/path: change BOTH url() lines below.
+       - To control the focal point, adjust background-position.
+       ======================= */
+    .hero{
+      position: relative;
+      overflow: hidden;
+      display: grid;
+      place-items: center;
+      background: var(--brand-teal);
+      /* IMAGE SOURCE #1 (actual photo): update this path/filename if you change it */
+      background-image:
+        linear-gradient(to right, rgba(20,184,196,.55), rgba(20,184,196,.20)),
+        url("./img/Zimbabwe_2022_CG-7848.jpg");
+      background-size: cover;       /* covers full area */
+      background-position: center right; /* move left/right to re-center subject */
+    }
+    /* slight vignette for contrast; delete if you want the image fully clean */
+    .hero::after{
+      content:""; position:absolute; inset:0;
+      background: radial-gradient(70% 80% at 30% 50%, rgba(0,0,0,.0), rgba(0,0,0,.35));
+      pointer-events: none;
+    }
+
+    /* =======================
+       HERO CONTENT BLOCK
+       - Edit text directly in the HTML below.
+       - To change max widths or spacing, tweak values here.
+       ======================= */
+    .content{
+      position: relative;            /* sits above overlays */
+      max-width: 1100px;
+      width: 100%;
+      padding: clamp(24px, 5vw, 56px);
+      display: grid;
+      gap: 24px;
+    }
+    .kicker{
+      /* Small pill above the headline: edit text in HTML; styling here */
+      display:inline-block;
+      background: var(--paper-90); color: var(--ink);
+      padding: 6px 10px; border-radius: 999px;
+      font-size: 12px; text-transform: uppercase; letter-spacing: .12em;
+      width: fit-content;
+    }
+    .headline{
+      /* Main yellow headline: change color via --brand-gold variable */
+      font-family: Merriweather, Georgia, serif;
+      font-weight: 900; line-height: 1.05;
+      font-size: clamp(34px, 5vw + 8px, 64px);
+      color: var(--brand-gold);
+      max-width: 22ch;              /* tighten line-length */
+      text-wrap: balance;
+      margin: 0;
+    }
+    .subhead{
+      /* Supporting sentence: edit text in HTML; size/weight here */
+      font-size: clamp(16px, 1.4vw + 8px, 22px);
+      line-height: 1.5; max-width: 55ch; font-weight: 600;
+      text-wrap: balance;
+      text-shadow: 0 1px 1px rgba(0,0,0,.15);
+      margin: 0;
+    }
+
+    /* =======================
+       CTAs
+       - To change labels or links, edit the <a> tags in HTML.
+       - To adjust button colors, modify .btn-primary / .btn-secondary.
+       ======================= */
+    .cta-row{ display:flex; gap:14px; flex-wrap: wrap; }
+    .btn{
+      appearance: none; border: none; border-radius: 999px;
+      padding: 14px 20px; font-weight: 700; cursor: pointer;
+      text-decoration: none; display:inline-block;
+      transition: transform .05s ease, box-shadow .2s ease, background .2s ease, color .2s ease;
+    }
+    .btn-primary{
+      background: var(--brand-gold); color: #5a3a00;
+      box-shadow: 0 6px 18px rgba(248,193,5,.35);
+    }
+    .btn-primary:hover{ transform: translateY(-1px); }
+    .btn-secondary{
+      background: transparent; color: var(--paper); border: 2px solid var(--paper);
+    }
+    .btn-secondary:hover{ background: var(--paper); color: var(--ink); }
+
+    /* =======================
+       OPTIONAL TRUST ROW
+       - Replace the three <img> tags below with real logos (SVG/PNG).
+       - Or delete the entire .trust block if you don’t need it.
+       ======================= */
+    .trust{ display:flex; gap:20px; align-items:center; flex-wrap: wrap; opacity: .9; margin-top: 6px; }
+    .trust img{
+      height: 28px;
+      width: auto;
+      opacity: 1; /* Make logos fully visible */
+    }
+
+    /* =======================
+       FOOTER STUB
+       - Edit copy in HTML; style here.
+       ======================= */
+    .footer{
+      background:#0a1416; color:#9db4bb;
+      padding: 22px clamp(24px, 5vw, 56px); font-size: 14px;
+    }
+
+    /* =======================
+       RESPONSIVE TWEAKS
+       - Shrink the rail on tablets
+       - Hide the rail on small phones for more room
+       ======================= */
+    @media (max-width: 880px){
+      .page{ grid-template-columns: 64px 1fr; }
+      .brand-text{ font-size: 16px; }
+      .headline{ max-width: 18ch; }
+    }
+    @media (max-width: 640px){
+      .rail{ display:none; }                  /* remove the left rail on small screens */
+      .content{ padding: 28px 22px 48px; }
+      .subhead{ max-width: 60ch; }
+    }
+  </style>
+</head>
+
+<body>
+  <main class="page">
+    <!-- =======================
+         BRAND RAIL CONTENT
+         - To use a real logo, replace the <span class="logo-box">✚</span>
+           with:  <img src="./assets/logo.svg" alt="charity:: water logo" class="logo-img">
+           Then style .logo-img in CSS if needed.
+         ======================= -->
+    <aside class="rail" aria-label="Brand bar">
+      <div class="rail-inner">
+        <img src="./img/jerry_can_yellow.png" alt="charity:: water logo" width="40" class="logo-img">
+        <span class="brand-text">charity: water</span>
+      </div>
+    </aside>
+
+    <!-- =======================
+         HERO SECTION
+         - IMAGE SOURCE #2 (overlayed via CSS)
+           The hero image comes from .hero { background-image: url("./assets/landing-hero.png"); }
+           Put your file at: /assets/landing-hero.png (relative to this index.html)
+           To change it, update that path in the CSS above.
+         - TEXT: edit the content inside these tags.
+         ======================= -->
+    <section class="hero" role="region" aria-label="Hero: Donating made crystal clear">
+      <div class="content">
+        <!-- Small kicker above the headline (edit or remove) -->
+        <span class="kicker">100% Project Transparency</span>
+
+        <!-- HEADLINE: change copy here -->
+        <h1 class="headline">Donating Made Crystal Clear</h1>
+
+        <!-- SUBHEAD: change copy here -->
+        <p class="subhead">
+          Every $10 brings safe, transparent clean water to families—and you see
+          exactly where your impact flows.
+        </p>
+
+        <!-- CTA BUTTONS: change labels/links here -->
+        <div class="cta-row">
+          <a class="btn btn-primary" href="#donate" aria-label="Donate ten dollars now">Donate $10</a>
+          <a class="btn btn-secondary" href="#how-it-works">See How It Works</a>
+        </div>
+
+        <!-- OPTIONAL TRUST LOGOS: replace src with real logos or remove the whole block -->
+        <div class="trust" aria-label="Trust indicators">
+          <img src="./img/facebook-png-icon-follow-us-facebook-1.png" alt="Partner logo 1">
+          <img src="./img/instagram-logo-png-transparent-background.png" alt="Partner logo 2">
+          <img src="./img/new-twitter-x-logo-twitter-icon-x-social-media-icon-free-png.webp" alt="Partner logo 3">
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- FOOTER COPY: edit text / add links as needed -->
+  <footer class="footer">
+    © 2025 charity: water • Transparency Promise
+  </footer>
+</body>
+</html>
